@@ -1,2 +1,8 @@
 <h1> CREATE YOUR CHEF <h2>
 
+<%= form_for(@chef, url: {action: 'chef_created'}, method: :post) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    
+    <%= f.submit %>
+<% end %>

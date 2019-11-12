@@ -1,4 +1,6 @@
 class PlayController < ApplicationController
+    skip_before_action :verify_authenticity_token
+    
     def transition
         # fun transition page when starting to play (will play a gif)
     end
@@ -6,19 +8,25 @@ class PlayController < ApplicationController
     def choose_chef
         # user gets to select their appearance (chef), and can move on to
             # starting a "battle" by picking ingredients
-        @chef = Chef.new
         @available_chefs = Chef.all
-        @chef_images = Chef::CHEF_IMAGE_URLS
+        @chef = Chef.new
     end
 
-    def choose_chef_select
-
+    def chef_selected
+        # set our current chef cookie to the id of the Chef that was selected
+        session[:chef_id] = params[:chef][:id]
+        redirect_to ingredient_selection_path
     end
 
     def create_chef
         # creates a new chef
             # name
             # appearance
+        @chef = Chef.new
+    end
+
+    def chef_created
+        
     end
 
     def edit_chef

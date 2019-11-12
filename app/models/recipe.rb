@@ -1,6 +1,7 @@
 class Recipe < ApplicationRecord
     has_many :recipe_ingredients
     has_many :ingredients, through: :recipe_ingredients
+    has_one_attached :image
 
     GARBAGE = Recipe.find_by(name: "Garbage")
 
@@ -26,13 +27,14 @@ class Recipe < ApplicationRecord
         end
     end
 
-    def self.create_by_ingredient_names(recipeName, recipeDamage ,image_url, ingredient_names_array)
+    def self.create_by_ingredient_names(recipeName, recipeDamage , ingredient_names_array)
         if ingredient_list_exists?(ingredient_names_array) == false
-            thisRecipe = Recipe.create(name: recipeName, damage: recipeDamage, image_url: image_url)
+            thisRecipe = Recipe.create(name: recipeName, damage: recipeDamage)
             ingredient_names_array.each do |ingredient_name|
                 ingredientToAdd = Ingredient.find_or_create_by(name: ingredient_name)
                 RecipeIngredient.create(recipe_id: thisRecipe.id, ingredient_id: ingredientToAdd.id)
             end
+            return thisRecipe
         else
             puts "Ingredients List for #{recipeName} Is Not Unique!"
         end      

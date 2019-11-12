@@ -1,3 +1,3 @@
 class Chef < ApplicationRecord
-    CHEF_IMAGE_URLS = ["placeholder"]
+    has_many_attached :images
 end

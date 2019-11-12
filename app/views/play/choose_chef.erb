@@ -1,15 +1,9 @@
 <h1> CHEF SELECTION <h2>
 
-<%= form_for @chef do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <select>
-      <% @chef_images.each do |chef_image| %>
-      <option value=<%= chef_image %>><%= chef_image %></option>
-      <% end %>
-    </select>
+<%= form_for(@chef, url: {action: "chef_selected"}, method: :post) do |f| %>
+    <%= f.collection_select :id, Chef.all, :id, :name %>
+    <%= f.submit %>
 <% end %>
-
-<%= button_to "Start Your Fight", ingredient_selection_path, method: :get %>
-<%= button_to "Add Chef", chef_create_path, method: :get %>
-<%= button_to "Edit Your Chef", chef_edit_path, method: :get %>
+    
+<%= button_to "Add Chef", chef_create_form_path, method: :get %>
+<%= button_to "Edit Your Chef", chef_edit_form_path, method: :get %>

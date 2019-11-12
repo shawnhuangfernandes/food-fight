@@ -44,6 +44,11 @@ sn = Monster.create(name: "Seniorita Nosey", health: 100)
 
 #chefs and their associated images
 alf = Chef.create(name: "Alfonzi", lives: 3)
+alf.image.attach(io: File.open('app/assets/images/beef_stew.png'), filename: 'beef_stew.png')
+
 su = Chef.create(name: "Susan", lives: 3)
+su.image.attach(io: File.open('app/assets/images/beef_stew.png'), filename: 'beef_stew.png')
+
 gr = Chef.create(name: "Gregory", lives: 3)
-mt = Chef.create(name: "Matt", lives: 3)
+gr.image.attach(io: File.open('app/assets/images/beef_stew.png'), filename: 'beef_stew.png')
+

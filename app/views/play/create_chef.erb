@@ -5,8 +5,8 @@
     <%= f.text_field :name %>
     <%= f.submit %>
     <% @arr.each do |img_name| %>
-        <%= check_box("chef_img", "chef_key", {:multiple => false}, img_name, nil) %>
-        <%=image_tag(img_name)%>
+        <%= radio_button("chef", "image_name", img_name) %>
+        <%= image_tag(img_name)%>
     <% end %>
 <% end %>
 

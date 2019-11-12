@@ -1,45 +1,44 @@
 class PlayController < ApplicationController
     skip_before_action :verify_authenticity_token
     
-    def transition #prefix:
+    def transition #prefix: play_transition
         # fun transition page when starting to play (will play a gif)
     end
 
-    def choose_chef #prefix: 
+    def choose_chef #prefix: chef_selection_form
         # user gets to select their appearance (chef), and can move on to
             # starting a "battle" by picking ingredients
         @available_chefs = Chef.all
         @chef = Chef.new
     end
 
-    def chef_selected #prefix:
-        # set our current chef cookie to the id of the Chef that was selected
+    def chef_selected #prefix: chef_selected
         session[:chef_id] = params[:chef][:id]
         redirect_to ingredient_selection_path
     end
 
-    def create_chef #prefix:
-        # creates a new chef
-            # name
-            # appearance
-        @arr = ["beef_stew", "chicken_noodle_soup", "cookies"]
+    def create_chef #prefix: chef_create_form
+        @arr = Chef.chef_image_names
         @chef = Chef.new
     end
 
-    def chef_created #prefix:
+    def chef_created #prefix: chef_created
         byebug
-        redirect_to 
+        Chef.setup_new_chef(params[:chef][:name], params[:chef][:image_name])
+        redirect_to chef_selection_form_path
     end
 
-    def edit_chef #prefix:
-        # edits the current chef
-            # name
-            # appearance
+    def edit_chef #prefix: chef_edit_form
+        @chef
     end
 
-    def pick_ingredients #prefix: 
+    def pick_ingredients #prefix: ingredient_selection_form
         # user can see the chef, and monster, and also a series of buttons to select
             # ingredients and submit their selection to make an ingredient
+    end
+
+    def ingredients_picked #prefix: ingredients_selected
+
     end
 
     def result #prefix: 

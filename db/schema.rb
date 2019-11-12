@@ -36,12 +36,14 @@ ActiveRecord::Schema.define(version: 2019_11_12_175544) do
   create_table "chefs", force: :cascade do |t|
     t.string "name"
     t.integer "lives"
+    t.string "image_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
+    t.string "image_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -49,6 +51,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_175544) do
   create_table "monsters", force: :cascade do |t|
     t.string "name"
     t.integer "health"
+    t.string "image_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -63,6 +66,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_175544) do
   create_table "recipes", force: :cascade do |t|
     t.string "name"
     t.integer "damage"
+    t.string "image_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

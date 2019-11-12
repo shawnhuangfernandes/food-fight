@@ -1,1 +1,11 @@
 <h1> EDIT YOUR CHEF <h2>
+
+<%= form_for(@chef, url: {action: 'chef_editted'}, method: :post) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+    <% @arr.each do |img_name| %>
+        <%= radio_button("chef", "image_name", img_name) %>
+        <%= image_tag(img_name)%>
+    <% end %>
+<% end %>

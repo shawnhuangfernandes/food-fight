@@ -2,7 +2,7 @@
 
 <%= form_for(@chef, url: {action: "chef_selected"}, method: :post) do |f| %>
     <%= f.collection_select :id, Chef.all, :id, :name %>
-    <%= f.submit %>
+    <%= f.submit "Begin Game!" %>
 <% end %>
     
 <%= button_to "Add Chef", chef_create_form_path, method: :get %>

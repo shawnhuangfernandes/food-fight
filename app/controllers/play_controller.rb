@@ -11,6 +11,7 @@ class PlayController < ApplicationController
     end
 
     def chef_selected #prefix: chef_selected
+        Chef.reset_all_health
         session[:chef_id] = params[:chef][:id]
         Monster.all.reset_all_health
         session[:monster_id] = Monster.select_random_living_monster.id
@@ -43,28 +44,41 @@ class PlayController < ApplicationController
     end
 
     def ingredients_picked #prefix: ingredients_selected
-        # check to see if ingredients makes a recipe
-        # store that recipe 
+            @ingredients_selected = params[:ingredient_ids].map{|id| Ingredient.find(id).name}
+            @recipe_made = Recipe.recipe_or_garbage(@ingredients_selected)
+            @monster = Monster.find(session[:monster_id])
+            @chef = Chef.find(session[:chef_id])
+
+        if @recipe_made.name == "Garbage"
+            session[:recipe_id] = @recipe_made.id
+            if @chef.lives - 1 == 0 
+                redirect_to lose_page
+            else
+                @chef.update(lives: @chef.lives - 1)
+                redirect_to result_path
+            end
+        else
+            if @monster.health - @recipe_made.damage <= 0
+                redirect_to win_path
+            else
+                @monster.update(lives: @monster.health - @recipe_made.damage)
+                redirect_to result_path
+            end
+        end
     end
 
-    def result #prefix: 
-        # based on their selection, will determine if it makes a recipe or garbage
-            # if recipe made garbage
-                # chef loses health
-            # if it made a recipe
-                # monster loses health based on recipe damage
-        # will re-route accordingly based on monster's/player's health
-            # if below 0, player has won this battle --> to win page
-            # if above 0, player keeps battling
-            # if player or "chef's" health is below 0, will go to the lose page
+    def result #prefix: result
+        @recipe_made = Recipe.find(session[:recipe_id])
+        @monster = Monster.find(session[:monster_id])
+        @chef = Chef.find(session[:chef_id])
     end
 
-    def lose #prefix: 
+    def lose #prefix: lose
         # player loses, plays yet another funny gif, and provides the option to play again
             # redirects to chef selection page
     end
 
-    def win #prefix: 
+    def win #prefix: win
         # player wins, another monster takes the place of the defeated monster
             #
     end

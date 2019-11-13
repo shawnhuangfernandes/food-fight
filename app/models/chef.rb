@@ -13,4 +13,10 @@ class Chef < ApplicationRecord
 
         new_chef
     end
+
+    def self.reset_all_health
+        Chef.all.each do |chef|
+            chef.update(lives: MAX_LIVES)
+        end
+    end
 end

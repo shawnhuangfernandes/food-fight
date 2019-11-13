@@ -20,11 +20,13 @@ class Recipe < ApplicationRecord
 
     def self.recipe_or_garbage(ingredients_names_array)
         if ingredients_names_array.size > 0 || ingredients_names_array != nil
-            recipeResult = Recipe.all.detect {|recipe| recipe.get_ingredients_names - ingredients_names_array == []}
+            recipeResult = Recipe.all.detect {|recipe| 
+            recipe.get_ingredients_names - ingredients_names_array == []}
             recipeResult = (recipeResult == nil) ? GARBAGE : recipeResult
         else
-            GARBAGE
+            recipeResult = GARBAGE
         end
+        recipeResult
     end
 
     def self.create_by_ingredient_names(recipeName, recipeDamage , ingredient_names_array)

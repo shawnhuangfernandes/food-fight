@@ -4,34 +4,42 @@
 gb = Recipe.create(name: "Garbage")
 gb.update(image_name: "ing_chicken.png")
 gb.image.attach(io: File.open('app/assets/images/ing_chicken.png'), filename: 'ing_chicken.png')
+gb.readonly!
 
 fc = Recipe.create_by_ingredient_names("Fried Chicken", 20, ["Chicken", "Flour", "Spice"])
 fc.update(image_name: "rec_fried_chicken.png")
 fc.image.attach(io: File.open('app/assets/images/rec_fried_chicken.png'), filename: 'rec_fried_chicken.png')
+fc.readonly!
 
 ch = Recipe.create_by_ingredient_names("Chili", 20, ["Spice", "Onion", "Beef", "Salt"])
 ch.update(image_name: "rec_chili.png")
 ch.image.attach(io: File.open('app/assets/images/rec_chili.png'), filename: 'rec_chili.png')
+ch.readonly!
 
 ck = Recipe.create_by_ingredient_names("Cookies", 20, ["Flour", "Sugar", "Butter", "Salt"])
 ck.update(image_name: "rec_cookies.png")
 ck.image.attach(io: File.open('app/assets/images/rec_cookies.png'), filename: 'rec_cookies.png')
+ck.readonly!
 
 cns = Recipe.create_by_ingredient_names("Chicken Noodle Soup", 20, ["Chicken", "Flour", "Onion", "Water", "Salt"])
 cns.update(image_name: "rec_chicken_noodle_soup.png")
 cns.image.attach(io: File.open('app/assets/images/rec_chicken_noodle_soup.png'), filename: 'rec_chicken_noodle_soup.png')
+cns.readonly!
 
 bs = Recipe.create_by_ingredient_names("Beef Stew", 20, ["Salt", "Beef", "Water", "Spice", "Onion"])
 bs.update(image_name: "rec_beef_stew.png")
 bs.image.attach(io: File.open('app/assets/images/rec_beef_stew.png'), filename: 'rec_beef_stew.png')
+bs.readonly!
 
 ls = Recipe.create_by_ingredient_names("Lasagna", 20, ["Beef", "Flour", "Butter", "Cheese", "Onion", "Salt"])
 ls.update(image_name: "rec_lasagna.png")
 ls.image.attach(io: File.open('app/assets/images/rec_lasagna.png'), filename: 'rec_lasagna.png')
+ls.readonly!
 
 rc = Recipe.create_by_ingredient_names("Roast Chicken", 20, ["Chicken", "Spice", "Salt", "Butter"])
 rc.update(image_name: "rec_roast_chicken.png")
 rc.image.attach(io: File.open('app/assets/images/rec_roast_chicken.png'), filename: 'rec_roast_chicken.png')
+rc.readonly!
 
 #ingredients and their associated images
 i_cc = Ingredient.find_by(name: "Chicken")

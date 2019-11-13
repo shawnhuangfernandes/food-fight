@@ -3,7 +3,7 @@
 <%= form_with url: ingredients_picked_path do |form| %>
     <% @ingredients.each do |ingredient| %>
         <%= check_box_tag 'ingredient_ids[]', ingredient.id %>
-        <%= image_tag(ingredient.image_name)%>
+        <%= image_tag(ingredient.image_name, size: "90x90")%>
         <%= ingredient.name %>
         <br>
     <% end %>

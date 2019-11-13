@@ -45,11 +45,16 @@ class PlayController < ApplicationController
 
     def ingredients_picked #prefix: ingredients_selected
             @ingredients_selected = params[:ingredient_ids].map{|id| Ingredient.find(id).name}
+            byebug
             @recipe_made = Recipe.recipe_or_garbage(@ingredients_selected)
+            session[:recipe_id] = @recipe_made.id
+            byebug
             @monster = Monster.find(session[:monster_id])
             @chef = Chef.find(session[:chef_id])
 
+
         if @recipe_made.name == "Garbage"
+            byebug
             session[:recipe_id] = @recipe_made.id
             if @chef.lives - 1 == 0 
                 redirect_to lose_page
@@ -61,7 +66,7 @@ class PlayController < ApplicationController
             if @monster.health - @recipe_made.damage <= 0
                 redirect_to win_path
             else
-                @monster.update(lives: @monster.health - @recipe_made.damage)
+                @monster.update(health: @monster.health - @recipe_made.damage)
                 redirect_to result_path
             end
         end

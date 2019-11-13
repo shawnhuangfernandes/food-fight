@@ -5,11 +5,12 @@ class Ingredient < ApplicationRecord
 
     def self.create_ingredients_puzzle(num_ingredients)
 
-        ingredientPuzzleArray = Recipe.all.sample.ingredients
+        ingredientPuzzleArray = (Recipe.all.sample.ingredients).to_a
         availableIngredients = Ingredient.all - ingredientPuzzleArray
 
         until ingredientPuzzleArray.size >= num_ingredients
-            ingredientPuzzleArray << availableIngredients.delete_at(rand(0..availableIngredients.size-1))
+            selected_ingredient = availableIngredients.pop
+            ingredientPuzzleArray.push(selected_ingredient)
         end
 
         ingredientPuzzleArray

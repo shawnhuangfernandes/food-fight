@@ -22,7 +22,6 @@ class Recipe < ApplicationRecord
         if ingredients_names_array.size > 0 || ingredients_names_array != nil
             recipeResult = Recipe.all.detect {|recipe|
             recipe.get_ingredients_names.sort == ingredients_names_array.sort}
-            byebug
             if recipeResult == nil
                 return GARBAGE
             else
@@ -31,7 +30,7 @@ class Recipe < ApplicationRecord
         else
             return GARBAGE
         end
-        
+
     end
 
     def self.create_by_ingredient_names(recipeName, recipeDamage , ingredient_names_array)

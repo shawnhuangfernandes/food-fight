@@ -5,14 +5,13 @@
 <p> You put put some stuff together for <%= @monster.name %> </p>
 
 <p> You create some <%= @recipe_made.name %> for the lil' bugger! </p>
-<p> You create some <%= puts @recipe_made.name%> for the lil' bugger! </p>
 
 <% if @recipe_made.name == "Garbage" %>
     <p> Digusting! <%= @monster.name %> does not like it! You get a bad Yelp review! -1 reputation points!</p>
     <p> You have <%= @chef.lives %> reputation points left </p>
 <% else %>
     <p> Fantastic! <%= @monster.name %> eats it up for <%= @recipe_made.damage %> fullness points! </p>
-    <p> <%= @monster.name %> has <% @monster.health %> stomach points left! </p>
+    <p> <%= @monster.name %> has <%= @monster.health %> stomach points left! </p>
 <% end %>
 
-<%= button_to "Keep Going!", ingredients_pick_form_path %>
+<%= button_to "Keep Going!", ingredients_pick_form_path, method: 'get' %>

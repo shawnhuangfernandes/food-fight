@@ -11,4 +11,8 @@ class Monster < ApplicationRecord
     def self.select_random_living_monster
         Monster.all.select {|monster| monster.health > 0}.sample
     end
+
+    def self.all_defeated?
+        Monster.all.all? {|monster| monster.health <= 0}
+    end
 end

@@ -7,4 +7,8 @@ class Monster < ApplicationRecord
             monster.health = MAX_HEALTH
         end
     end
+
+    def self.select_random_living_monster
+        Monster.all.select {|monster| monster.health > 0}.sample
+    end
 end

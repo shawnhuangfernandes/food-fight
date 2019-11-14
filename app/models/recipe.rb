@@ -49,4 +49,8 @@ class Recipe < ApplicationRecord
     def get_ingredients_names
         self.ingredients.map{|ingredient| ingredient.name}
     end
+
+    def present_ingredients_names
+        get_ingredients_names.reduce("") {|memo, name| memo + ", #{name}"}.delete_prefix(", ")
+    end
 end

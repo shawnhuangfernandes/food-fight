@@ -5,14 +5,18 @@ class Ingredient < ApplicationRecord
 
     def self.create_ingredients_puzzle(num_ingredients)
 
-        ingredientPuzzleArray = (Recipe.all.sample.ingredients).to_a
-        availableIngredients = Ingredient.all - ingredientPuzzleArray
+        answerHash = {recipe_answer: nil, ingredients: []}
 
-        until ingredientPuzzleArray.size >= num_ingredients
+        answerHash[:recipe_answer_id] = Recipe.all.sample.id
+        answerHash[:ingredients_given] = Recipe.all.sample.ingredients.to_a
+        
+        availableIngredients = Ingredient.all - answerHash[:ingredients_given]
+
+        until answerHash[:ingredients_given].size >= num_ingredients
             selected_ingredient = availableIngredients.pop
-            ingredientPuzzleArray.push(selected_ingredient)
+            answerHash[:ingredients_given].push(selected_ingredient)
         end
 
-        ingredientPuzzleArray
+        answerHash
     end
 end

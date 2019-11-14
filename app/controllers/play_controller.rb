@@ -20,7 +20,8 @@ class PlayController < ApplicationController
     end
 
     def chef_created #prefix: chef_created
-        Chef.setup_new_chef(params[:chef][:name], params[:chef][:image_name])
+        byebug
+        Chef.setup_new_chef(params[:chef][:name], params[:chef][:image_name], params[:chef][:image_name].ext('gif'))
         redirect_to chef_selection_form_path
     end
 
@@ -30,7 +31,7 @@ class PlayController < ApplicationController
     end
 
     def chef_editted #prefix: chef_editted
-        Chef.find(params[:chef][:id]).update(name: params[:chef][:name], image_name: params[:chef][:name])
+        Chef.find(params[:chef][:id]).update(name: params[:chef][:name], image_name: params[:chef][:name], gif_name: params[:chef][:image_name].ext('gif'))
         redirect_to chef_selection_form_path
     end
 
@@ -44,7 +45,9 @@ class PlayController < ApplicationController
     end
 
     def pick_ingredients #prefix: ingredients_pick_form
-        @ingredients = Ingredient.create_ingredients_puzzle(8)
+        puzzleHash = Ingredient.create_ingredients_puzzle(8)
+        session[:recipe_answer_id] = puzzleHash[:recipe_answer_id]
+        @ingredients = puzzleHash[:ingredients_given].shuffle
         @current_monster = Monster.find(session[:monster_id])
         @current_chef = Chef.find(session[:chef_id])
     end
@@ -81,6 +84,7 @@ class PlayController < ApplicationController
     end
 
     def result #prefix: result
+        @correct_answer = Recipe.find(session[:recipe_answer_id])
         @recipe_made = Recipe.find(session[:recipe_id])
         @current_monster = Monster.find(session[:monster_id])
         @current_chef = Chef.find(session[:chef_id])

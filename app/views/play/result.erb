@@ -1,5 +1,5 @@
-<%= image_tag @current_chef.image_name %>
-<%= image_tag @current_monster.image_name %>
+<%= image_tag @current_chef.gif_name %>
+<%= image_tag @current_monster.gif_name %>
 
 <p> You create some <%= @recipe_made.name %> for <%= @current_monster.name %>! </p>
 
@@ -8,6 +8,9 @@
 <% if @recipe_made.name == "Garbage" %>
     <p> Digusting! <%= @current_monster.name %> does not like it! You get a bad Yelp review! -1 reputation points!</p>
     <p> You have <%= @current_chef.lives %> reputation points left </p>
+
+    <p> Doh! The recipe you should have made was: <%= @recipe_answer.name %>!</p>
+    <p> The ingredients you should have used are: 
 <% else %>
     <p> Fantastic! <%= @current_monster.name %> eats it up for <%= @recipe_made.damage %> fullness points! </p>
     <p> <%= @current_monster.name %> has <%= @current_monster.health %> stomach points left! </p>

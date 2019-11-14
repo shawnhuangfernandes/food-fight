@@ -7,11 +7,8 @@ class Chef < ApplicationRecord
         Dir.entries("app/assets/images/").select{|file_name| file_name.start_with?("chf") && file_name.end_with?(".png")}
     end
 
-    def self.setup_new_chef(name, image_url)
-        new_chef = Chef.create(name: name, image_name: image_url)
-        new_chef.lives = Chef::MAX_LIVES
-        new_chef.save
-        new_chef
+    def self.setup_new_chef(name, image_url, gif_name)
+        new_chef = Chef.create(name: name, lives: MAX_LIVES, image_name: image_url, gif_name: gif_name)
     end
 
     def self.reset_all_health

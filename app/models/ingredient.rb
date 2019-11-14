@@ -5,7 +5,7 @@ class Ingredient < ApplicationRecord
 
     def self.create_ingredients_puzzle(num_ingredients)
 
-        answerHash = {recipe_answer: nil, ingredients: []}
+        answerHash = {recipe_answer_id: nil, ingredients: []}
 
         answerHash[:recipe_answer_id] = Recipe.all.sample.id
         answerHash[:ingredients_given] = Recipe.all.sample.ingredients.to_a

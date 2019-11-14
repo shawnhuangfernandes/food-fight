@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # routes to static controller
   get 'about', to: 'static#about', as: "about"
   get 'instructions', to: 'static#instructions', as: "instructions"
+  get 'ingredients-list', to: 'static#ingredients_list', as: 'ingredients_list'
 
   #routes to play controller
   get 'play', to: 'play#transition', as: "play-transition"

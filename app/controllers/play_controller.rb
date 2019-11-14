@@ -12,8 +12,8 @@ class PlayController < ApplicationController
 
     def chef_selected #prefix: chef_selected
         Chef.reset_all_health
-        session[:chef_id] = params[:chef][:id]
         Monster.all.reset_all_health
+        session[:chef_id] = params[:chef][:id]
         session[:monster_id] = Monster.select_random_living_monster.id
         redirect_to ingredients_pick_form_path
     end
@@ -38,12 +38,17 @@ class PlayController < ApplicationController
         redirect_to chef_selection_form_path
     end
 
-    def pick_ingredients #prefix: ingredient_selection_form
+    def pick_ingredients #prefix: ingredients_pick_form
         @ingredients = Ingredient.create_ingredients_puzzle(8)
         @monster = Monster.find(session[:monster_id])
     end
 
-    def ingredients_picked #prefix: ingredients_selected
+    def ingredients_picked #prefix: ingredients_picked
+            if params[:ingredient_ids] == nil
+                
+            else
+
+            end
             @ingredients_selected = params[:ingredient_ids].map{|id| Ingredient.find(id).name}
             @recipe_made = Recipe.recipe_or_garbage(@ingredients_selected)
             session[:recipe_id] = @recipe_made.id
@@ -76,13 +81,15 @@ class PlayController < ApplicationController
     end
 
     def lose #prefix: lose
-        # player loses, plays yet another funny gif, and provides the option to play again
-            # redirects to chef selection page
+        @recipe_made = Recipe.find(session[:recipe_id])
+        @current_chef = Chef.find(session[:chef_id])
+        @current_monster = Monster.find(session[:monster_id])
     end
 
     def win #prefix: win
+        @recipe_made = Recipe.find(session[:recipe_id])
         @won_game = Monster.all_defeated?
-        if @won_game
+        if @won_game == false
             @defeated_monster = Monster.find(session[:monster_id])
             @next_monster = Monster.select_random_living_monster
             session[:monster_id] = @next_monster.id

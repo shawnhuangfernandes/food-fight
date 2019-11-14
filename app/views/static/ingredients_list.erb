@@ -1,0 +1,14 @@
+<h1> THE RECIPES YOU KNOW </h1>
+
+<% @recipes.each do |recipe| %>
+    <% if recipe.name != "Garbage" %>
+        <p> <%= recipe.name %> </p>
+        <ul>
+        <% recipe.get_ingredients_names.sort.each do |ingredient_name| %>
+            <li> <%= ingredient_name %> </li>
+        <% end %>
+        </ul>
+    <% end %>
+<% end %>
+
+<%= button_to "Back To Game", ingredients_pick_form_path, method: 'get' %>

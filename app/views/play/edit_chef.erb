@@ -1,4 +1,4 @@
-<h1> EDIT YOUR CHEF <h2>
+<h1> EDIT A CHEF <h2>
 
 <%= form_for(@chef, url: {action: "chef_editted"}, method: :post) do |f| %>
     <%= f.collection_select :id, Chef.all, :id, :name %>
@@ -10,5 +10,5 @@
         <%= image_tag(img_name)%>
         <br>
     <% end %>
-    <%= f.submit "Change Chef!" %>
+    <%= f.submit "Edit Chef!" %>
 <% end %>

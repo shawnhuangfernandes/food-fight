@@ -1,9 +1,12 @@
 <h1> CHEF SELECTION <h2>
 
+<% if @available_chefs.size >= 1 %>
 <%= form_for(@chef, url: {action: "chef_selected"}, method: :post) do |f| %>
-    <%= f.collection_select :id, Chef.all, :id, :name %>
+    <%= f.collection_select :id, @available_chefs, :id, :name %>
     <%= f.submit "Begin Game!" %>
 <% end %>
     
-<%= button_to "Add Chef", chef_create_form_path, method: :get %>
 <%= button_to "Edit Your Chef", chef_edit_form_path, method: :get %>
+<% end %>
+<%= button_to "Add Chef", chef_create_form_path, method: :get %>
+<%= button_to "Delete A Chef", chef_delete_form_path, method: :get %>

@@ -19,7 +19,7 @@ class PlayController < ApplicationController
     end
 
     def create_chef #prefix: chef_create_form
-        @arr = Chef.chef_image_names
+        @chef_images = Chef.chef_image_names
         @chef = Chef.new
     end
 
@@ -38,24 +38,33 @@ class PlayController < ApplicationController
         redirect_to chef_selection_form_path
     end
 
+    def delete_chef #prefix: chef_delete_form
+        @chef = Chef.new
+    end
+
+    def chef_deleted #prefix: chef_deleted
+        Chef.destroy(params[:chef][:id])
+        redirect_to chef_selection_form_path
+    end
+
     def pick_ingredients #prefix: ingredients_pick_form
         @ingredients = Ingredient.create_ingredients_puzzle(8)
-        @monster = Monster.find(session[:monster_id])
+        @current_monster = Monster.find(session[:monster_id])
+        @current_chef = Chef.find(session[:chef_id])
     end
 
     def ingredients_picked #prefix: ingredients_picked
             if params[:ingredient_ids] == nil
-                
+                @recipe_made = Recipe.find_by(name: "Garbage")
             else
-
+                @ingredients_selected = params[:ingredient_ids].map{|id| Ingredient.find(id).name}
+                @recipe_made = Recipe.recipe_or_garbage(@ingredients_selected)
             end
-            @ingredients_selected = params[:ingredient_ids].map{|id| Ingredient.find(id).name}
-            @recipe_made = Recipe.recipe_or_garbage(@ingredients_selected)
-            session[:recipe_id] = @recipe_made.id
+
             @monster = Monster.find(session[:monster_id])
             @chef = Chef.find(session[:chef_id])
-
-
+            session[:recipe_id] = @recipe_made.id
+           
         if @recipe_made.name == "Garbage"
             session[:recipe_id] = @recipe_made.id
             if @chef.lives - 1 == 0 
@@ -76,8 +85,8 @@ class PlayController < ApplicationController
 
     def result #prefix: result
         @recipe_made = Recipe.find(session[:recipe_id])
-        @monster = Monster.find(session[:monster_id])
-        @chef = Chef.find(session[:chef_id])
+        @current_monster = Monster.find(session[:monster_id])
+        @current_chef = Chef.find(session[:chef_id])
     end
 
     def lose #prefix: lose
@@ -93,7 +102,7 @@ class PlayController < ApplicationController
             @defeated_monster = Monster.find(session[:monster_id])
             @next_monster = Monster.select_random_living_monster
             session[:monster_id] = @next_monster.id
-            @chef = Chef.find(session[:chef_id])
+            @current_chef = Chef.find(session[:chef_id])
         end
     end
 end

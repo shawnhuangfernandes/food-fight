@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   get 'play/create-chef', to: 'play#create_chef', as: "chef_create_form"
   post 'play/create-chef', to: 'play#chef_created', as: "chef_created"
 
+  get 'play/delete-chef', to: 'play#delete_chef', as: "chef_delete_form"
+  post 'play/delete-chef', to: 'play#chef_deleted', as: "chef_deleted"
+
   get '/play/pick-ingredients', to: 'play#pick_ingredients', as: "ingredients_pick_form"
   post '/play/pick-ingredients', to: 'play#ingredients_picked', as: "ingredients_picked"
 

@@ -1,8 +1,9 @@
-<h1> LOSE PAGE </h1>
+<%= image_tag @current_chef.image_name %>
+<%= image_tag @current_monster.image_name %>
 
 <h3> YOU DELIVER A HEAPING PILE A GARBAGE </h3>
 
-<p> Oh No! Your reputation has been foiled! <%= @current_monster %> writes a seething Yelp review! </p>
+<p> Oh No! Your reputation has been foiled! <%= @current_monster.name %> writes a seething Yelp review! </p>
 <p> The Health Department will be coming to shut you down soon! Bummer! </p>
 
 <%= button_to "Try Again!", chef_selection_form_path, method: 'get' %>

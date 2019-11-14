@@ -1,4 +1,7 @@
-<h1> PICK YOUR INGREDIENTS </h1>
+<h1> Make a Recipe! </h1>
+
+<%= image_tag @current_chef.image_name %>
+<%= image_tag @current_monster.image_name %>
 
 <%= form_with url: ingredients_picked_path do |form| %>
     <% @ingredients.each do |ingredient| %>

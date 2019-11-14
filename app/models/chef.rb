@@ -4,7 +4,7 @@ class Chef < ApplicationRecord
     MAX_LIVES = 3
 
     def self.chef_image_names
-        Dir.entries("app/assets/images/").select{|file_name| file_name.start_with?("chf")}
+        Dir.entries("app/assets/images/").select{|file_name| file_name.start_with?("chf") && file_name.end_with?(".png")}
     end
 
     def self.setup_new_chef(name, image_url)

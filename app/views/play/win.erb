@@ -1,10 +1,7 @@
-<h1> WIN PAGE <h2>
+<%= image_tag @current_chef.image_name %>
+<%= image_tag @defeated_monster.image_name %>
 
-<h3> WHAT A SATISFYING MEAL! </h3>
-
-<p> You create some <%= @recipe_made.name %> for the lil' bugger! </p>
-
-<p> <%= @defeated_monster.name %> is stuffed! Nice work!</p>
+<p> The <%= @recipe_made.name %> you make stuffs <%= @defeated_monster.name %>! </p>
 
 <% if @won_game %>
     <p> Wow! What a day! You don't have any more customers! Nice work <%= @chef.name %>! </p>
@@ -12,6 +9,7 @@
 <% else %>
     <p> <%= @defeated_monster.name %> leaves the restaurant happy! </p>
     <p> Oh but wait! You've got another customer! <%= @next_monster.name %> is ready to eat! </p>
+    <%= image_tag @next_monster.image_name %>
     <%= button_to "Play Again!", ingredients_pick_form_path, method: 'get' %>
 <% end %>
 

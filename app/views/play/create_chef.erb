@@ -5,7 +5,7 @@
     <%= f.text_field :name %>
     <%= f.submit %>
     <br>
-    <% @arr.each do |img_name| %>
+    <% @chef_images.each do |img_name| %>
         <%= radio_button("chef", "image_name", img_name) %>
         <%= image_tag(img_name)%>
         <br>

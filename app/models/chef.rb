@@ -10,7 +10,7 @@ class Chef < ApplicationRecord
     def self.setup_new_chef(name, image_url)
         new_chef = Chef.create(name: name, image_name: image_url)
         new_chef.lives = Chef::MAX_LIVES
-
+        new_chef.save
         new_chef
     end
 

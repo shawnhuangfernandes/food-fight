@@ -3,6 +3,8 @@
 
 <p> You create some <%= @recipe_made.name %> for <%= @current_monster.name %>! </p>
 
+<%= image_tag @recipe_made.image_name %>
+
 <% if @recipe_made.name == "Garbage" %>
     <p> Digusting! <%= @current_monster.name %> does not like it! You get a bad Yelp review! -1 reputation points!</p>
     <p> You have <%= @current_chef.lives %> reputation points left </p>

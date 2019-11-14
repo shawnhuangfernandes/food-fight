@@ -1,13 +1,13 @@
 <%= image_tag @current_chef.image_name %>
-<%= image_tag @defeated_monster.image_name %>
+<%= image_tag @current_monster.image_name %>
 
-<p> The <%= @recipe_made.name %> you make stuffs <%= @defeated_monster.name %>! </p>
+<p> The <%= @recipe_made.name %> you make stuffs <%= @current_monster.name %>! </p>
 
 <% if @won_game %>
-    <p> Wow! What a day! You don't have any more customers! Nice work <%= @chef.name %>! </p>
+    <p> Wow! What a day! You don't have any more customers! Nice work <%= @current_chef.name %>! </p>
     <%= button_to "Play Again!", chef_selection_form_path, method: 'get' %>
 <% else %>
-    <p> <%= @defeated_monster.name %> leaves the restaurant happy! </p>
+    <p> <%= @current_monster.name %> leaves the restaurant happy! </p>
     <p> Oh but wait! You've got another customer! <%= @next_monster.name %> is ready to eat! </p>
     <%= image_tag @next_monster.image_name %>
     <%= button_to "Play Again!", ingredients_pick_form_path, method: 'get' %>

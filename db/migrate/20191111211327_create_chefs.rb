@@ -4,6 +4,7 @@ class CreateChefs < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :lives
       t.string :image_name
+      t.string :gif_name
 
       t.timestamps
     end

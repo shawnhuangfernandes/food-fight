@@ -1,12 +1,7 @@
 Rails.application.routes.draw do
-  resources :recipes
-  resources :ingredients
-  resources :monsters
-  resources :chefs
 
   # routes to home controller
-  root to: 'home#transition', as: "home-transition"
-  get 'home', to: 'home#menu', as: "home-menu"
+  root to: 'home', to: 'home#menu', as: "home-menu"
 
   # routes to static controller
   get 'about', to: 'static#about', as: "about"
@@ -14,7 +9,6 @@ Rails.application.routes.draw do
   get 'ingredients-list', to: 'static#ingredients_list', as: 'ingredients_list'
 
   #routes to play controller
-  get 'play', to: 'play#transition', as: "play-transition"
 
   get '/play/choose-chef', to: 'play#choose_chef', as: "chef_selection_form"
   post '/play/choose-chef', to: 'play#chef_selected', as: "chef_selected"

@@ -1,9 +1,5 @@
 class PlayController < ApplicationController
     skip_before_action :verify_authenticity_token
-    
-    def transition #prefix: play_transition
-        # fun transition page when starting to play (will play a gif)
-    end
 
     def choose_chef #prefix: chef_selection_form
         @available_chefs = Chef.all
@@ -75,6 +71,7 @@ class PlayController < ApplicationController
             end
         else
             if @monster.health - @recipe_made.damage <= 0
+                @monster.update(health: @monster.health - @recipe_made.damage)
                 redirect_to win_path
             else
                 @monster.update(health: @monster.health - @recipe_made.damage)
@@ -98,11 +95,11 @@ class PlayController < ApplicationController
     def win #prefix: win
         @recipe_made = Recipe.find(session[:recipe_id])
         @won_game = Monster.all_defeated?
+        @current_chef = Chef.find(session[:chef_id])
+        @current_monster = Monster.find(session[:monster_id])
         if @won_game == false
-            @defeated_monster = Monster.find(session[:monster_id])
             @next_monster = Monster.select_random_living_monster
             session[:monster_id] = @next_monster.id
-            @current_chef = Chef.find(session[:chef_id])
         end
     end
 end

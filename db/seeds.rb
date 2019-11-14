@@ -4,25 +4,25 @@
 gb = Recipe.create(name: "Garbage")
 gb.update(image_name: "ing_chicken.png")
 
-fc = Recipe.create_by_ingredient_names("Fried Chicken", 20, ["Chicken", "Flour", "Spice"])
+fc = Recipe.create_by_ingredient_names("Fried Chicken", 100, ["Chicken", "Flour", "Spice"])
 fc.update(image_name: "rec_fried_chicken.png")
 
-ch = Recipe.create_by_ingredient_names("Chili", 20, ["Spice", "Onion", "Beef", "Salt"])
+ch = Recipe.create_by_ingredient_names("Chili", 100, ["Spice", "Onion", "Beef", "Salt"])
 ch.update(image_name: "rec_chili.png")
 
-ck = Recipe.create_by_ingredient_names("Cookies", 20, ["Flour", "Sugar", "Butter", "Salt"])
+ck = Recipe.create_by_ingredient_names("Cookies", 100, ["Flour", "Sugar", "Butter", "Salt"])
 ck.update(image_name: "rec_cookies.png")
 
-cns = Recipe.create_by_ingredient_names("Chicken Noodle Soup", 20, ["Chicken", "Flour", "Onion", "Water", "Salt"])
+cns = Recipe.create_by_ingredient_names("Chicken Noodle Soup", 100, ["Chicken", "Flour", "Onion", "Water", "Salt"])
 cns.update(image_name: "rec_chicken_noodle_soup.png")
 
-bs = Recipe.create_by_ingredient_names("Beef Stew", 20, ["Salt", "Beef", "Water", "Spice", "Onion"])
+bs = Recipe.create_by_ingredient_names("Beef Stew", 100, ["Salt", "Beef", "Water", "Spice", "Onion"])
 bs.update(image_name: "rec_beef_stew.png")
 
-ls = Recipe.create_by_ingredient_names("Lasagna", 20, ["Beef", "Flour", "Butter", "Cheese", "Onion", "Salt"])
+ls = Recipe.create_by_ingredient_names("Lasagna", 100, ["Beef", "Flour", "Butter", "Cheese", "Onion", "Salt"])
 ls.update(image_name: "rec_lasagna.png")
 
-rc = Recipe.create_by_ingredient_names("Roast Chicken", 20, ["Chicken", "Spice", "Salt", "Butter"])
+rc = Recipe.create_by_ingredient_names("Roast Chicken", 100, ["Chicken", "Spice", "Salt", "Butter"])
 rc.update(image_name: "rec_roast_chicken.png")
 
 #ingredients and their associated images

@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_175544) do
     t.string "name"
     t.integer "lives"
     t.string "image_name"
+    t.string "gif_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -44,6 +45,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_175544) do
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.string "image_name"
+    t.string "gif_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(version: 2019_11_12_175544) do
     t.string "name"
     t.integer "health"
     t.string "image_name"
+    t.string "gif_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

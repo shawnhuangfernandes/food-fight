@@ -20,7 +20,10 @@ class PlayController < ApplicationController
     end
 
     def chef_created #prefix: chef_created
-        byebug
+        if params[:chef][:name] == ""
+            flash[:naming_error] = "Please provide actual content for your chef's name"
+            redirect_to chef_creation_form_path
+        end
         Chef.setup_new_chef(params[:chef][:name], params[:chef][:image_name], params[:chef][:image_name].ext('gif'))
         redirect_to chef_selection_form_path
     end

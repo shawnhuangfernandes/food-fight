@@ -1,23 +1,35 @@
-
-<div class="container_chef_monster_img">
-<%= image_tag @current_chef.gif_name %>
-
-<%= image_tag @current_monster.gif_name %>
+<div class="page_title">
+    <h1> You Use Some Ingredients Together! </h1>
 </div>
 
-<p> You create some <%= @recipe_made.name %> for <%= @current_monster.name %>! </p>
+<div class="container_chef_monster_img">
+<%= image_tag @current_chef.gif_name%>
 
+<%= image_tag @current_monster.gif_name%>
+</div>
+
+<div class="page_content">
+<p> You create some <%= @recipe_made.name %> for <%= @current_monster.name %>! </p>
+</div>
+
+<div class="page_content">
 <%= image_tag @recipe_made.image_name %>
+</div>
 
 <% if @recipe_made.name == "Garbage" %>
-    <p> Digusting! <%= @current_monster.name %> does not like it! You get a bad Yelp review! -1 reputation points!</p>
-    <p> You have <%= @current_chef.lives %> reputation points left </p>
+    <%= audio_tag "fail#{rand(1..7)}.mp3", autoplay: true %>
+    <div class="page_content"><p> Digusting! <%= @current_monster.name %> does not like it! You get a bad Yelp review! -1 reputation points!</p> </div>
+    <div class="page_content"><p> You have <%= @current_chef.lives %> reputation points left </p></div>
 
-    <p> Doh! The recipe you should have made was: <%= @correct_answer.name %>!</p>
-    <p> The ingredients you should have used are:  <%= @correct_answer.present_ingredients_names %>. </p>
+    <div class="page_content"><p> Doh! The recipe you should have made was: <%= @correct_answer.name %>!</p></div>
+    <div class="page_content"><p> The ingredients you should have used are:  <%= @correct_answer.present_ingredients_names %>. </p></div>
 <% else %>
-    <p> Fantastic! <%= @current_monster.name %> eats it up for <%= @recipe_made.damage %> fullness points! </p>
-    <p> <%= @current_monster.name %> has <%= @current_monster.health %> stomach points left! </p>
+    <%= audio_tag "success#{rand(1..7)}.mp3", autoplay: true %>
+    <div class="page_content"><p> Fantastic! <%= @current_monster.name %> eats it up for <%= @recipe_made.damage %> fullness points! </p></div>
+    <div class="page_content"><p> <%= @current_monster.name %> has <%= @current_monster.health %> stomach points left! </p></div>
 <% end %>
+</div>
 
+<div class = "container_page_options">
 <%= button_to "Keep Going!", ingredients_pick_form_path, method: 'get' %>
+</div>

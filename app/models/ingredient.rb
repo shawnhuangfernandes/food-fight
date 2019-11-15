@@ -8,6 +8,11 @@ class Ingredient < ApplicationRecord
         answerHash = {recipe_answer_id: nil, ingredients: []}
 
         answerHash[:recipe_answer_id] = Recipe.all.sample.id
+
+        until answerHash[:recipe_answer_id] != 1 do
+            answerHash[:recipe_answer_id] = Recipe.all.sample.id
+        end
+        
         answerHash[:ingredients_given] = Recipe.all.sample.ingredients.to_a
         
         availableIngredients = Ingredient.all - answerHash[:ingredients_given]

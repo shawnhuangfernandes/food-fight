@@ -1,7 +1,11 @@
-<h1> DELETE YOUR CHEF <h2>
+<div class="page_title">
+    <h1> DELETE YOUR CHEF <h2>
+</div>
 
-<%= form_for(@chef, url: {action: 'chef_deleted'}, method: :post) do |f| %>
-    <%= f.collection_select :id, Chef.all, :id, :name%>
-    <%= f.submit "Delete Chef" %>
-    <br>
-<% end %>
+<div class="container_page_options">
+    <%= form_for(@chef, url: {action: 'chef_deleted'}, method: :post) do |f| %>
+        <%= f.collection_select :id, Chef.all, :id, :name%>
+        <%= f.submit "Delete Chef" %>
+        <br>
+    <% end %>
+</div>

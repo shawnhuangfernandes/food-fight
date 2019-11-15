@@ -1,14 +1,22 @@
-<h1> EDIT A CHEF <h2>
+<div class="page_title">
+    <h1> EDIT A CHEF <h2>
+</div>
 
-<%= form_for(@chef, url: {action: "chef_editted"}, method: :post) do |f| %>
-    <%= f.collection_select :id, Chef.all, :id, :name %>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-    <br>
-    <% @arr.each do |img_name| %>
-        <%= radio_button("chef", "image_name", img_name) %>
-        <%= image_tag(img_name)%>
+    <%= form_for(@chef, url: {action: "chef_editted"}, method: :post) do |f| %>
+        <div class='container_chef_image_selection'>
+            <% @arr.each do |img_name| %>
+                <%= image_tag(img_name)%>
+                <%= radio_button("chef", "image_name", img_name) %>
+                <br>
+            <% end %>
+        </div>
         <br>
+        
+        <div class="container_page_options">
+            <%= f.collection_select :id, Chef.all, :id, :name %>
+            <%= f.label :name %>
+            <%= f.text_field :name %>
+            <br>
+            <%= f.submit "Edit Chef!" %>
+        </div>
     <% end %>
-    <%= f.submit "Edit Chef!" %>
-<% end %>

@@ -1,5 +1,3 @@
- <%= stylesheet_link_tag "application" %>
-
 <div class="page_title">
     <h1> Make a Recipe! </h1>
 </div>
@@ -7,13 +5,17 @@
 <div class="container_chef_monster_img">
     <div class="img_caption">
         <%= image_tag @current_chef.gif_name%>
-        <%= @current_chef.name %>
+        Chef: <%= @current_chef.name %>
     </div>
 
     <div class="img_caption">
         <%= image_tag @current_monster.gif_name%>
-        <%= @current_monster.name %>
+        Customer: <%= @current_monster.name %>
     </div>
+</div>
+
+<div class="page_title">
+    <h2> PICK YOUR INGREDIENTS! </h2>
 </div>
 
 <%= form_with url: ingredients_picked_path do |form| %>
@@ -32,6 +34,7 @@
     <div class="container_page_options">
         <%= form.submit "Feed The Monster!" %>
     </div>
+    <br>
 <% end %>
 
 <div class="container_page_options">

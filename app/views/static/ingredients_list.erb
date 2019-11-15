@@ -1,14 +1,28 @@
-<h1> YOUR COOKBOOK </h1>
+<div class="page_title">
+    <h1> YOUR COOKBOOK </h1>
+</div>
 
+<%= button_to "Back To Game", ingredients_pick_form_path, method: 'get' %><br>
+
+<div class = "recipe_list">
 <% @recipes.each do |recipe| %>
-    <% if recipe.name != "Garbage" %>
-        <p> <%= recipe.name %> </p>
-        <ul>
-        <% recipe.get_ingredients_names.sort.each do |ingredient_name| %>
-            <li> <%= ingredient_name %> </li>
+    <div class="entire_recipe">
+        <% if recipe.name != "Garbage" %>
+            <div class="container_recipe_list">
+            <p><b> <%= recipe.name %> </b></p>
+            </div>
+            <div class="ingredient_horiz_list">
+            <% recipe.get_ingredients_names.sort.each do |ingredient_name| %>
+                <div class="ingredient_item">
+                    <p> <%= ingredient_name %> </p>
+                    <%= image_tag Ingredient.find_by(name: ingredient_name).image_name %>
+                </div>
+            <% end %> 
+            </div>      
         <% end %>
-        </ul>
-    <% end %>
+    </div>
 <% end %>
+</div>
+<br>
 
 <%= button_to "Back To Game", ingredients_pick_form_path, method: 'get' %>

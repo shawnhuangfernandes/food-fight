@@ -1,12 +1,20 @@
+<div class="page_title">
+    <h1> OH NO! YOU MESSED UP FOR THE LAST TIME </h1>
+</div>
+
 <div class="container_chef_monster_img">
 <%= image_tag @current_chef.gif_name %>
 
 <%= image_tag @current_monster.gif_name %>
 </div>
 
-<h3> YOU DELIVER A HEAPING PILE A GARBAGE </h3>
 
-<p> Oh No! Your reputation has been foiled! <%= @current_monster.name %> writes a seething Yelp review! </p>
-<p> The Health Department will be coming to shut you down soon! Bummer! </p>
+<div class="page_content"><h3> YOUR FOOD TASTES REALLY, REALLY BAD! </h3></div>
 
-<%= button_to "Try Again!", chef_selection_form_path, method: 'get' %>
+<div class="page_content"><p> Oh No! Your reputation has been foiled! <%= @current_monster.name %> writes a seething Yelp review! </p></div>
+<div class="page_content"><p> The Health Department will be coming to shut you down soon! Bummer! </p></div>
+</div>
+
+<div class="container_page_options">
+    <%= button_to "Try Again!", chef_selection_form_path, method: 'get' %>
+</div>

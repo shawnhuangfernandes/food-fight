@@ -4,7 +4,7 @@
 
     <%= form_for(@chef, url: {action: "chef_editted"}, method: :post) do |f| %>
         <div class='container_chef_image_selection'>
-            <% @arr.each do |img_name| %>
+            <% @chef_images.each do |img_name| %>
                 <%= image_tag(img_name)%>
                 <%= radio_button("chef", "image_name", img_name) %>
                 <br>

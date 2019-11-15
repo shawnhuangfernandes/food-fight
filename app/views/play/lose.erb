@@ -2,6 +2,8 @@
     <h1> OH NO! YOU MESSED UP FOR THE LAST TIME </h1>
 </div>
 
+ <%= audio_tag "fail#{rand(1..7)}.mp3", autoplay: true %>
+
 <div class="container_chef_monster_img">
 <%= image_tag @current_chef.gif_name %>
 

@@ -11,6 +11,7 @@
 <p> The <%= @recipe_made.name %> you make stuffs <%= @current_monster.name %>! </p>
 
 <% if @won_game %>
+    <%= audio_tag "success#{rand(1..7)}.mp3", autoplay: true %>
     <p> Wow! What a day! You don't have any more customers! Nice work <%= @current_chef.name %>! </p>
     <%= button_to "Play Again!", chef_selection_form_path, method: 'get' %>
 <% else %>

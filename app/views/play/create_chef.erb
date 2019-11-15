@@ -2,6 +2,15 @@
     <h1> CREATE YOUR CHEF <h2>
 </div>
 
+<div class = "error_container">
+    <% if @error_message != nil %>
+        <div class="error_message">
+            <%= @error_message %>
+        </div>
+        <br><br>
+    <% end %>
+</div>
+
 <%= form_for(@chef, url: {action: 'chef_created'}, method: :post) do |f| %>
     
     <div class = "page_title">

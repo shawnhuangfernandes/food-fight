@@ -13,6 +13,19 @@
     justify-content: space-evenly;
 }
 
+.error_container
+{
+    display: flex;
+    justify-content: center;
+}
+
+.error_message
+{
+    color: black;
+    background-color: red;
+
+}
+
 .layout_footer
 {
     display: flex;

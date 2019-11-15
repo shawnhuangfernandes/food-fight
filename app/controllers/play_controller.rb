@@ -20,8 +20,16 @@ class PlayController < ApplicationController
     end
 
     def chef_created #prefix: chef_created
-        Chef.setup_new_chef(params[:chef][:name], params[:chef][:image_name], params[:chef][:image_name].ext('gif')) # create a new chef based on input
-        redirect_to chef_selection_form_path # redirect to chef selection page
+        if params[:chef][:name] == nil || params[:chef][:name] == "" || params[:chef][:image_name] == nil
+            @chef = Chef.new # create chef instance for form_for
+            @chef_images = Chef.chef_image_names # get all the chef images and save them to use in view (image-tags)
+            @error_message = flash[:error_message] = "Invalid Inputs"
+            render 'create_chef'
+        else
+            Chef.setup_new_chef(params[:chef][:name], params[:chef][:image_name], params[:chef][:image_name].ext('gif')) # create a new chef based on input
+            redirect_to chef_selection_form_path # redirect to chef selection page
+        end
+
     end
 
     def edit_chef #prefix: chef_edit_form
@@ -30,8 +38,15 @@ class PlayController < ApplicationController
     end
 
     def chef_editted #prefix: chef_editted
-        Chef.find(params[:chef][:id]).update(name: params[:chef][:name], image_name: params[:chef][:name], gif_name: params[:chef][:image_name].ext('gif')) # update the chef selected in form
-        redirect_to chef_selection_form_path # redirect to chef selection page
+        if params[:chef][:name] == nil || params[:chef][:name] == "" || params[:chef][:image_name] == nil
+            @chef = Chef.new # create chef instance for form_for
+            @chef_images = Chef.chef_image_names # get all the chef images and save them to use in view (image-tags)
+            @error_message = flash[:error_message] = "Invalid Inputs"
+            render 'edit_chef'
+        else
+            Chef.find(params[:chef][:id]).update(name: params[:chef][:name], image_name: params[:chef][:name], gif_name: params[:chef][:image_name].ext('gif')) # update the chef selected in form
+            redirect_to chef_selection_form_path # redirect to chef selection page
+        end
     end
 
     def delete_chef #prefix: chef_delete_form

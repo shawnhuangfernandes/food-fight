@@ -17,14 +17,14 @@
 </div>
 
 <% if @recipe_made.name == "Garbage" %>
-    <%= audio_tag "fail#{rand(1..7)}.mp3", autoplay: true %>
+    <%= audio_tag "fail#{rand(1..12)}.mp3", autoplay: true %>
     <div class="page_content"><p> Digusting! <%= @current_monster.name %> does not like it! You get a bad Yelp review! -1 reputation points!</p> </div>
     <div class="page_content"><p> You have <%= @current_chef.lives %> reputation points left </p></div>
 
     <div class="page_content"><p> Doh! The recipe you should have made was: <%= @correct_answer.name %>!</p></div>
     <div class="page_content"><p> The ingredients you should have used are:  <%= @correct_answer.present_ingredients_names %>. </p></div>
 <% else %>
-    <%= audio_tag "success#{rand(1..7)}.mp3", autoplay: true %>
+    <%= audio_tag "success#{rand(1..10)}.mp3", autoplay: true %>
     <div class="page_content"><p> Fantastic! <%= @current_monster.name %> eats it up for <%= @recipe_made.damage %> fullness points! </p></div>
     <div class="page_content"><p> <%= @current_monster.name %> has <%= @current_monster.health %> stomach points left! </p></div>
 <% end %>

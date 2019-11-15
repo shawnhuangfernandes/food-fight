@@ -73,7 +73,6 @@ Check it out on my blog: https://dev.to/shawnhuangfernandes/booting-up-week-6-pr
   end
 ```
 
-​
 ## User Stories
 1. As a user, I want to be able to choose a a chef, or create my own
 2. As a user, I want to be able to solve a puzzle to defeat a monster

@@ -30,8 +30,7 @@ class PlayController < ApplicationController
     end
 
     def chef_editted #prefix: chef_editted
-        Chef.find(params[:chef][:id]).update(name: params[:chef][:name]
-                        , image_name: params[:chef][:name], gif_name: params[:chef][:image_name].ext('gif')) # update the chef selected in form
+        Chef.find(params[:chef][:id]).update(name: params[:chef][:name], image_name: params[:chef][:name], gif_name: params[:chef][:image_name].ext('gif')) # update the chef selected in form
         redirect_to chef_selection_form_path # redirect to chef selection page
     end
 

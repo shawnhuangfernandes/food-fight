@@ -8,17 +8,22 @@
 <%= image_tag @current_monster.gif_name %>
 </div>
 
+<div class="page_content">
 <p> The <%= @recipe_made.name %> you make stuffs <%= @current_monster.name %>! </p>
+</div>
 
-<% if @won_game %>
-    <%= audio_tag "success#{rand(1..10)}.mp3", autoplay: true %>
-    <p> Wow! What a day! You don't have any more customers! Nice work <%= @current_chef.name %>! </p>
-    <%= button_to "Play Again!", chef_selection_form_path, method: 'get' %>
-<% else %>
-    <p> <%= @current_monster.name %> leaves the restaurant happy! </p>
-    <p> Oh but wait! You've got another customer! <%= @next_monster.name %> is ready to eat! </p>
-    <%= image_tag @next_monster.image_name %>
-    <%= button_to "Play Again!", ingredients_pick_form_path, method: 'get' %>
-<% end %>
+<%= audio_tag "success#{rand(1..10)}.mp3", autoplay: true %>
+
+    <% if @won_game %>
+
+        <div class="page_content"><p> Wow! What a day! You don't have any more customers! Nice work <%= @current_chef.name %>! </p></div>
+        <div class="page_content"><%= button_to "Play Again!", chef_selection_form_path, method: 'get' %></div>
+    <% else %>
+        <div class="page_content"><p> <%= @current_monster.name %> leaves the restaurant happy! </p></div>
+        <div class="page_content"><p> Oh but wait! You've got another customer! <%= @next_monster.name %> is ready to eat! </p></div>
+        <div class="page_content"><%= image_tag @next_monster.image_name %></div>
+        <div class="page_content"><%= button_to "Play Again!", ingredients_pick_form_path, method: 'get' %></div>
+    <% end %>
+</div>
 
 

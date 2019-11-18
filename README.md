@@ -84,7 +84,7 @@ Check it out on my blog: https://dev.to/shawnhuangfernandes/booting-up-week-6-pr
 1. Fork and clone this repository.
 2. Open the repository in your IDE of choice.
 3. Run ```bundle install``` in console to insure you have all the required gems.
-4. Run ```rails db:reset``` in console to create the schema.
+4. Run ```rails db:migrate``` in console to create the schema.
 5. Run ```rails db:reset``` in console to seed it
 5. Run ```ruby bin/run.rb``` in the console to start the application
 ​
@@ -100,7 +100,7 @@ If you wish to conribute to the project you may do so by following the proceedin
 ​
 [MIT License](https://opensource.org/licenses/MIT)
 ​
-### Copyright 2019 Matt Gahrns
+### Copyright 2019 Shawn Huang Fernandes
 ​
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 ​
